@@ -42,6 +42,8 @@ export default function QuoteEstimator() {
     setError('');
 
     try {
+      if (!supabase) throw new Error('Quote service is not configured');
+
       const { error: insertError } = await supabase.from('quote_requests').insert({
         name,
         email,
